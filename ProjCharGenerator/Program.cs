@@ -125,6 +125,9 @@ namespace generator
         public GeneratorWords(Dictionary<string, int> words)
         {
             this.words = words;
+            foreach (var word in words) {
+                sumw += word.Value;
+            }
         }
         private void LoadWords(string filePath)
         {
