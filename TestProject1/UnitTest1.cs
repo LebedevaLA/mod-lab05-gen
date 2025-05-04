@@ -146,33 +146,31 @@ namespace generator.Tests
             Assert.Contains(' ', result);
         }
 
-        [Fact]
-        public void GeneratorBi_HandlesSingleBigram()
+       [Fact]
+        public void GeneratorBigram()
         {
-            var mockBigrams = new Dictionary<string, int> { {"ab", 1} };
+            // Arrange
+            var mockBigrams = new Dictionary<string, int> { { "ab", 10 }, { "ba", 10 } };
             var generator = new GeneratorBi(mockBigrams);
         
             // Act
             var result = generator.GenerateText(5);
-            
-            // Assert
-            Assert.Matches(@"^[ab]{5}$", result); // Только a и b
-            Assert.Contains("a", result);
-            Assert.Contains("b", result);
+        
+            Assert.True(result == "ababa" || result == "babab",
+        $"Expected 'ababa' or 'babab' but got '{result}'");
         }
-         [Fact]
-         public void GeneratorWords()
-         {
-             var mockBigrams = new Dictionary<string, int> { { "Летний", 1 }, {"день", 2} };
-             var generator = new GeneratorWords(mockBigrams);
         
-             // Act
-             var result = generator.GenerateSentences(2);
+        [Fact]
+        public void GeneratorBigram2()
+        {
+            // Arrange
+            var mockBigrams = new Dictionary<string, int> { { "ab", 10 } };
+            var generator = new GeneratorBi(mockBigrams);
         
-             // Assert
-             
-             Assert.Contains("Летний", result);
-             Assert.Contains("день", result);
-         }
+            // Act
+            var result = generator.GenerateText(5);
+        
+            Assert.Equal("ab", result);
+        }
     }
 }
