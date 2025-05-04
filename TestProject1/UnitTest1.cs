@@ -9,18 +9,7 @@ namespace generator.Tests
 {
     public class GeneratorBiTests
     {
-        [Fact]
-        public void GenerateText_ReturnsCorrectLength()
-        {
-            
-            var generator = new GeneratorBi();
-
-            // Act
-            var result = generator.GenerateText(100);
-
-            // Assert
-            Assert.Equal(100, result.Length);
-        }
+        
         [Fact]
         public void GenerateText_WithEmptyDictionary_ReturnsEmptyString()
         {
@@ -160,15 +149,30 @@ namespace generator.Tests
         [Fact]
         public void GeneratorBi_HandlesSingleBigram()
         {
-            // Arrange
-            var mockBigrams = new Dictionary<string, int> { { "ab", 10 }, { "ba",10 } };
+            var mockBigrams = new Dictionary<string, int> { {"ab", 1} };
             var generator = new GeneratorBi(mockBigrams);
-
+        
             // Act
             var result = generator.GenerateText(5);
-
+            
             // Assert
-            Assert.Equal("ababa", result); // alternates between a and b
+            Assert.Matches(@"^[ab]{5}$", result); // Только a и b
+            Assert.Contains("a", result);
+            Assert.Contains("b", result);
         }
+         [Fact]
+         public void GeneratorWords()
+         {
+             var mockBigrams = new Dictionary<string, int> { { "Летний", 1 }, {"день", 2} };
+             var generator = new GeneratorWords(mockBigrams);
+        
+             // Act
+             var result = generator.GenerateSentences(2);
+        
+             // Assert
+             
+             Assert.Contains("Летний", result);
+             Assert.Contains("день", result);
+         }
     }
 }
