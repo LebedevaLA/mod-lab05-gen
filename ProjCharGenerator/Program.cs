@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -23,7 +23,12 @@ namespace generator
         private Random random = new Random();
         public GeneratorBi()
         {
-            LoadBigrams(@"C:\Users\armok\Documents\lebedeva\IASR\mod-lab05-gen\Bi.txt");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "TestData", "Bi.txt");
+            if (!File.Exists(filePath))
+            {
+                filePath = @"C:\Users\armok\Documents\lebedeva\IASR\mod-lab05-gen\Bi.txt";
+            }
+            LoadBigrams(filePath);
             BuildTable();
         }
         public GeneratorBi(Dictionary<string, int> bigrams)
@@ -109,7 +114,13 @@ namespace generator
         private int sumw = 0;
         public GeneratorWords()
         {
-            LoadWords(@"C:\Users\armok\Documents\lebedeva\IASR\mod-lab05-gen\Words.txt");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "TestData", "Bi.txt");
+            if (!File.Exists(filePath))
+            {
+                filePath = @"C:\Users\armok\Documents\lebedeva\IASR\mod-lab05-gen\Words.txt";
+            }
+            LoadWords(filePath);
+            
         }
         public GeneratorWords(Dictionary<string, int> words)
         {
