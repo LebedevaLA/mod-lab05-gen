@@ -198,14 +198,14 @@ namespace generator
 
             string text = generator.GenerateText(1000);
 
-            File.WriteAllText("C:/Users/armok/Documents/lebedeva/IASR/mod-lab05-gen/Results/gen1.txt", text);
+            File.WriteAllText("C:/Users/armok/Documents/lebedeva/IASR/mod-lab05-gen/Results/gen-1.txt", text);
             Console.WriteLine("Текст успешно сгенерирован и сохранён");
 
             var generator1 = new GeneratorWords();
 
             string text1 = generator1.GenerateSentences(1000);
 
-            File.WriteAllText("C:/Users/armok/Documents/lebedeva/IASR/mod-lab05-gen/Results/gen2.txt", text1);
+            File.WriteAllText("C:/Users/armok/Documents/lebedeva/IASR/mod-lab05-gen/Results/gen-2.txt", text1);
             Console.WriteLine("Текст успешно сгенерирован и сохранён");
 
         }
